@@ -7,8 +7,8 @@ def index(request):
     city="Indore"
     if request.method=="POST":
         city=request.POST['city']
-    print("Vishal")
-    print(city)
+    #print("Vishal")
+    #print(city)
     r=requests.get(url.format(city)).json();
     city_temp={
         'city':city,
@@ -21,6 +21,3 @@ def index(request):
     context={'city_temp':city_temp}
     print(r)
     return render(request,'weather/weather.html',context)
-
-def add(render):
-    print("Hello World!")
