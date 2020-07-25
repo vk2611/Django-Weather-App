@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Information</title>
+    <style>
+        body{
+            font-family:monospace;
+        }
+        .header{
+            height:12vh;;
+            background-color: grey;
+            display: fixed;
+        }
+        .img{
+            padding: 10px;
+            width: 100px;
+        }
+        .head-div{
+            display: flex;
+        }
+        .input-header{
+            margin-left: 150px;
+            font-size: 18px;
+        }
+        .input-city{
+            padding: 20px;
+            text-align: center;
+        }
+        input{
+            font-family:monospace;
+            border-radius: 5px;
+            width: 200px;
+            height: 20px;
+        }
+        .blue-button{
+            border-radius: 5px;
+            width: 80px;
+            height: 25px;
+            background-color: dodgerblue;
+        }
+        .box-body{
+            padding-top: 50px;
+            margin-top:80px;
+            display: flex;
+            justify-content: center;
+            border: 1px solid black;
+            width:25%;
+            margin-left: 35%;
+            height: 35vh;;
+            border-radius: 10px;
+            box-shadow: 5px 5px rgba(245, 255, 255, 127);
+        }
+        .box-img{
+            padding: 30px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    {% load static %}
+    <header class="header">
+        <div class="head-div">
+            <img class="img" src="{% static "logo.png" %}"/>
+            <div class="input-header">
+                <h2>What's the weather like?</h2>
+            </div>
+        </div>
+    </header>
+    <div class="input-city">
+        <form method="POST">
+            {% csrf_token %}
+            <input placeholder="Enter your city" name="city">
+            <button class="blue-button">Enter City</button>
+        </form>
+    </div>
+    <div class="box-body">
+        <div class="box-img">
+            <img src="http://openweathermap.org/img/w/{{ city_temp.logo }}.png" alt="Image">
+        </div>
+        <div class="box">
+            <h2>City Name:-{{city_temp.city}}</br>
+            Temperature:-{{city_temp.temp}}F</br>
+            pressure:-{{city_temp.pressure}} mmHg</br>
+            Humidity:-{{city_temp.humidity}} %</h2>
+        </div>
+    </div>
+</body>
+</html>
